@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+
+        <!-- Tree View -->
+        <record id="req_employee_tree_view" model="ir.ui.view">
+            <field name="name">req.employee.tree.view</field>
+            <field name="model">recruit.employee</field>
+            <field name="priority" eval="7" />
+            <field name="arch" type="xml">
+                <tree string="My Model Names">
+                    <field name="name" />
+                    <field name="address" />
+                    <field name="phone" />
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Form View -->
+        <record id="req_employee_form_view" model="ir.ui.view">
+            <field name="name">req.employee.form.view</field>
+            <field name="model">recruit.employee</field>
+            <field name="priority" eval="7"/>
+            <field name="arch" type="xml">
+                <form string="Model Name">
+                    <header>
+                        <!-- <field name="active" invisible="1"/> -->
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="address" />
+                                <field name="phone" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Education Info tree view -->
+
+        <record id="req_employee_edu_tree_view" model="ir.ui.view">
+            <field name="name">req.employee.edu.tree.view</field>
+            <field name="model">education.info</field>
+            <field name="priority" eval="7" />
+            <field name="arch" type="xml">
+                <tree string="My Model Names">
+                    <field name="institute"/>
+                    <field name="degree"/>
+                    <field name="passing_year"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Education Info Form View -->
+        <record id="req_employee_edu_form_view" model="ir.ui.view">
+            <field name="name">req.employee.edu.form.view</field>
+            <field name="model">education.info</field>
+            <field name="priority" eval="7"/>
+            <field name="arch" type="xml">
+                <form string="Model Name">
+                    <header>
+                        
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="institute"/>
+                                <field name="degree"/>
+                                <field name="passing_year"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- recruitment inherit  -->
+        <record id="rec_applicant_view_form" model="ir.ui.view">
+            <field name="name">hr.applicant.form.inherit12</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="after">
+                    <field name="emergency_contact">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="phone"/>
+                            <field name="address"/>
+                        </tree>
+                    </field>
+                    <field name="education_info">
+                        <tree editable="bottom">
+                            <field name="institute"/>
+                            <field name="degree"/>
+                            <field name="passing_year"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Employee inherit  -->
+         <record id="rec_employee_view_form" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit12</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="after">
+                    <field name="applicant_emergency_contact">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="phone"/>
+                            <field name="address"/>
+                        </tree>
+                    </field>
+                    <field name="education_info">
+                        <tree editable="bottom">
+                            <field name="institute"/>
+                            <field name="degree"/>
+                            <field name="passing_year"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- Action -->
+        <record id="action_req_employee_view" model="ir.actions.act_window">
+            <field name="name">Employee View</field>
+            <field name="res_model">recruit.employee</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="req_employee_tree_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create o_view_nocontent_smiling_face">
+                    Add a new record.
+                </p>
+            </field>
+        </record>
+
+
+        <!-- <menuitem id="recruitment_employee_submenu" action="action_req_employee_view" name="Our Employee" parent="hr_recruitment.menu_hr_recruitment_configuration" sequence="11" groups="base.group_user"/> -->
+        <menuitem id="job_portal_account_hr_recruitment" name="Our Employee" parent="hr_recruitment.menu_hr_recruitment_root" sequence="80"/>
+        <menuitem id="job_portal_account_view" name="Employee" parent="job_portal_account_hr_recruitment" action="action_req_employee_view"/>
+    </data>
+</odoo>

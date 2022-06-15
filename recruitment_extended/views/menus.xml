@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Main Menu -->
+        <!-- <menuitem
+            id="recruitment_employee_root"
+            name="Recruitment Employees"
+            groups="base.group_user"
+            web_icon="recruitment_extended,static/description/icon.png"
+            sequence="1000"/> -->
+       
+
+    </data>
+</odoo>

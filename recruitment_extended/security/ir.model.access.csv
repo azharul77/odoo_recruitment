@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_recruit_employee,recruit.employee,model_recruit_employee,base.group_user,1,1,1,1
+access_education_info,recruit.employee,model_education_info,base.group_user,1,1,1,1
+
+
